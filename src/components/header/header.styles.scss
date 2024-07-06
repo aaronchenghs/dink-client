@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.header {
+  height: 70px;
+
+  @media screen and (max-width: var(--mobile-width)) {
+    height: 50px;
+  }
+}
