@@ -2,8 +2,74 @@
 
 .header {
   height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--accent-color);
 
   @media screen and (max-width: var(--mobile-width)) {
     height: 50px;
+  }
+
+  .navButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    padding: 0 20px;
+
+    @media screen and (max-width: var(--mobile-width)) {
+      padding: 0 10px;
+    }
+
+    .navButton {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5px;
+      cursor: pointer;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--hover-color);
+      }
+
+      @media screen and (max-width: var(--mobile-width)) {
+        padding: 0 2px;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .navButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: var(--hover-color);
+    }
+
+    @media screen and (max-width: var(--mobile-width)) {
+      padding: 0 2px;
+      font-size: 1rem;
+    }
   }
 }

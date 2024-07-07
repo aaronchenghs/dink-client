@@ -32,3 +32,9 @@ $tablet-width: 1024px;
   --background-color: #{$dark-background-color};
   --text-color: #{$dark-text-color};
 }
+
+* {
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}

@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./components/home/home.component";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
+import { ROUTES } from "./global-utils";
 
 const App = () => {
   return (
@@ -10,8 +11,9 @@ const App = () => {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<>404 Page Not Found</>} />
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.COURT_LOCATOR} element={<></>} />
+        <Route path={ROUTES.NOT_FOUND} element={<>404 Page Not Found</>} />
       </Routes>
 
       <Footer />
