@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./header.styles.scss";
 import { ROUTES } from "../../global-utils";
@@ -22,16 +22,16 @@ const Header = () => {
   const $iconPath = useSelector((state: RootState) => state.user.iconPath);
 
   const [hidden, setHidden] = useState(false);
-  let lastScrollY = window.scrollY;
+  const lastScrollY = useRef(window.scrollY);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      if (window.scrollY > lastScrollY.current && window.scrollY > 100) {
         setHidden(true);
       } else {
         setHidden(false);
       }
-      lastScrollY = window.scrollY;
+      lastScrollY.current = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -54,7 +54,11 @@ const Header = () => {
           </button>
         ))}
         <button className="profileButton">
-          {$iconPath ? <img src={$iconPath} /> : <DEFAULT_PADDLE_ICON />}
+          {$iconPath ? (
+            <img src={$iconPath} alt="User Icon" />
+          ) : (
+            <DEFAULT_PADDLE_ICON />
+          )}
         </button>
       </div>
     </div>
