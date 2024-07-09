@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./footer.styles.scss";
 
 const themes = [
-  { name: "Default (Pickle Yellow)", value: "pickle-yellow" },
+  { name: "Pickle Yellow (Default)", value: "pickle-yellow" },
   { name: "Pickle Green", value: "pickle-green" },
   { name: "Pickle Orange", value: "pickle-orange" },
   { name: "Pickle Blue", value: "pickle-blue" },
