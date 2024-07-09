@@ -1,4 +1,5 @@
 @import "../../variables.scss";
+
 .footer {
   display: flex;
   flex-direction: row;
@@ -8,15 +9,21 @@
   width: 100%;
   background-color: var(--accent-color);
 
-  .themeSwitcher {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-    height: 25px;
-    cursor: pointer;
-    color: var(--text-color);
-    background-color: var(--primary-color);
+  .theme-selector {
+    position: relative;
+
+    label {
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid var(--text-color);
+      border-radius: 0.25rem;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
   }
 }

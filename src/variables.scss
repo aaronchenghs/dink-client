@@ -1,16 +1,17 @@
 // Light mode colors
-$light-primary-color: #ccff00;
+$pickle-yellow: #ccff00;
 $light-secondary-color: #1e90ff;
+$dark-secondary-color: #1362b2;
 $light-accent-color: black;
 $light-background-color: #f5f5f5;
 $light-text-color: #333333;
 
-// Dark mode colors
-$dark-primary-color: #99cc00;
-$dark-secondary-color: #0a74da;
-$dark-accent-color: #ff4500;
-$dark-background-color: #2c2c2c;
-$dark-text-color: #f5f5f5;
+// Extendewd Colors
+$pickle-green: #adff2f;
+$pickle-orange: #ffa500;
+$pickle-blue: #1e90ff;
+$pickle-white: #ffffff;
+$pickle-red: #ff4500;
 
 // Sizes
 $mobile-width: 767px;
@@ -21,19 +22,47 @@ $primary-font: "Poppins";
 
 // CSS Variables
 :root {
-  --primary-color: #{$light-primary-color};
+  --primary-color: #{$pickle-yellow};
   --secondary-color: #{$light-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
 }
 
-[data-theme="dark"] {
-  --primary-color: #{$dark-primary-color};
+[data-theme="pickle-green"] {
+  --primary-color: #{$pickle-green};
+  --secondary-color: #{$light-secondary-color};
+  --accent-color: #{$light-accent-color};
+  --background-color: #{$light-background-color};
+  --text-color: #{$light-text-color};
+}
+[data-theme="pickle-orange"] {
+  --primary-color: #{$pickle-orange};
+  --secondary-color: #{$light-secondary-color};
+  --accent-color: #{$light-accent-color};
+  --background-color: #{$light-background-color};
+  --text-color: #{$light-text-color};
+}
+[data-theme="pickle-blue"] {
+  --primary-color: #{$pickle-blue};
   --secondary-color: #{$dark-secondary-color};
-  --accent-color: #{$dark-accent-color};
-  --background-color: #{$dark-background-color};
-  --text-color: #{$dark-text-color};
+  --accent-color: #{$light-accent-color};
+  --background-color: #{$light-background-color};
+  --text-color: #{$light-text-color};
+}
+[data-theme="pickle-white"] {
+  --primary-color: #{$pickle-white};
+  --secondary-color: #{$light-secondary-color};
+  --accent-color: #{$light-accent-color};
+  --background-color: #{$light-background-color};
+  --text-color: #{$light-text-color};
+}
+[data-theme="pickle-red"] {
+  --primary-color: #{$pickle-red};
+  --secondary-color: #{$light-secondary-color};
+  --accent-color: #{$light-accent-color};
+  --background-color: #{$light-background-color};
+  --text-color: #{$light-text-color};
 }
 
 * {

@@ -1,32 +1,48 @@
 import { useCallback, useEffect, useState } from "react";
 import "./footer.styles.scss";
-import AccentTypography from "../../assets/AccentComponents/AccentTypography";
-import { LightSwitch } from "../../assets/lightSwitch";
+
+const themes = [
+  { name: "Default (Pickle Yellow)", value: "pickle-yellow" },
+  { name: "Pickle Green", value: "pickle-green" },
+  { name: "Pickle Orange", value: "pickle-orange" },
+  { name: "Pickle Blue", value: "pickle-blue" },
+  { name: "Pickle White", value: "pickle-white" },
+  { name: "Pickle Red", value: "pickle-red" },
+];
 
 const Footer = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(
-    localStorage.getItem("theme") === "dark"
+  const [theme, setTheme] = useState<string>(
+    localStorage.getItem("theme") || "pickle-yellow"
   );
 
-  const toggleTheme = useCallback(() => {
-    const newTheme = darkMode ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-    setDarkMode(!darkMode);
-  }, [darkMode]);
+  const handleChangeTheme = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const newTheme = event.target.value;
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      setTheme(newTheme);
+    },
+    []
+  );
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
+    const savedTheme = localStorage.getItem("theme") || "pickle-yellow";
     document.documentElement.setAttribute("data-theme", savedTheme);
-    setDarkMode(savedTheme === "dark");
+    setTheme(savedTheme);
   }, []);
 
   return (
     <div className="footer">
-      <AccentTypography tag="body" inverted>
-        Footer
-      </AccentTypography>
-      <LightSwitch dark={darkMode} onClick={toggleTheme} />
+      <div className="theme-selector">
+        <label htmlFor="theme-select">Choose Theme:</label>
+        <select id="theme-select" value={theme} onChange={handleChangeTheme}>
+          {themes.map((themeOption) => (
+            <option key={themeOption.value} value={themeOption.value}>
+              {themeOption.name}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
