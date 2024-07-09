@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+.accentTypography {
+  font-family: $primary-font;
+  color: var(--text-color);
+}
+.invertedAccentTyography {
+  font-family: $primary-font;
+  color: var(--background-color);
+}

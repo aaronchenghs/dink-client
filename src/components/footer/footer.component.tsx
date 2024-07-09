@@ -1,25 +1,32 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./footer.styles.scss";
+import AccentTypography from "../../assets/AccentComponents/AccentTypography";
+import { LightSwitch } from "../../assets/lightSwitch";
 
 const Footer = () => {
+  const [darkMode, setDarkMode] = useState<boolean>(
+    localStorage.getItem("theme") === "dark"
+  );
+
   const toggleTheme = useCallback(() => {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    const newTheme = darkMode ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-  }, []);
+    setDarkMode(!darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", savedTheme);
+    setDarkMode(savedTheme === "dark");
   }, []);
 
   return (
     <div className="footer">
-      <h1>Footer!</h1>
-      <button id="theme-toggle-button" onClick={toggleTheme}>
-        Toggle Theme
-      </button>
+      <AccentTypography tag="body" inverted>
+        Footer
+      </AccentTypography>
+      <LightSwitch dark={darkMode} onClick={toggleTheme} />
     </div>
   );
 };
