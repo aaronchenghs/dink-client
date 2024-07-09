@@ -12,9 +12,10 @@ interface NavigationLink {
 }
 
 const NAVIGATION: NavigationLink[] = [
-  { name: "Court Locator", route: ROUTES.COURT_LOCATOR },
   { name: "Forums", route: ROUTES.FORUMS },
+  { name: "Events", route: ROUTES.EVENTS },
   { name: "Shop", route: ROUTES.SHOP },
+  { name: "Court Locator", route: ROUTES.COURT_LOCATOR },
 ];
 
 const Header = () => {
