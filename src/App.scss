@@ -1,0 +1,18 @@
+@import "./variables.scss";
+@import "./components//header/header.styles.scss";
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - $header-height);
+  padding-top: $header-height;
+  @media screen and (max-width: var(--mobile-width)) {
+    min-height: calc(100vh - 50px);
+    height: 50px;
+  }
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

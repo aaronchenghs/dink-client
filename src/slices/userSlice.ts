@@ -4,12 +4,14 @@ interface IUserState {
   id: string | null;
   name: string | null;
   email: string | null;
+  iconPath: string | null;
 }
 
 export const USER_INITIAL_STATE: IUserState = {
   id: null,
   name: null,
   email: null,
+  iconPath: null,
 };
 
 const userSlice = createSlice({

@@ -1,16 +1,33 @@
 @import "../../variables.scss";
 
+$header-height: 65px;
+
 .header {
-  height: 70px;
+  height: $header-height;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  border-radius: 8px;
   background-color: var(--accent-color);
+  transition:
+    top 0.3s ease-in-out,
+    background-color 0.2s ease-in-out;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
 
   @media screen and (max-width: var(--mobile-width)) {
     height: 50px;
+  }
+
+  &.hidden {
+    top: -80px;
+  }
+  $navButtonsPadding: 25px;
+
+  .logo {
+    width: 100px;
+    margin-left: $navButtonsPadding;
   }
 
   .navButtonsContainer {
@@ -18,9 +35,10 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
     width: 100%;
-    padding: 0 20px;
+    height: 100%;
+    padding: 0 $navButtonsPadding;
 
     @media screen and (max-width: var(--mobile-width)) {
       padding: 0 10px;
@@ -31,45 +49,47 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 0 5px;
+      height: 75%;
+      padding: 0 10px;
       cursor: pointer;
       color: var(--text-color);
       font-size: 1.2rem;
       font-weight: 600;
       text-transform: uppercase;
       transition: all 0.3s ease;
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 2px;
 
       &:hover {
-        background-color: var(--hover-color);
+        background-color: var(--secondary-color);
       }
 
       @media screen and (max-width: var(--mobile-width)) {
-        padding: 0 2px;
+        padding: 0 3px;
         font-size: 1rem;
       }
     }
-  }
 
-  .navButton {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0 5px;
-    cursor: pointer;
-    color: var(--text-color);
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    .profileButton {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 55px;
+      height: 55px;
+      margin-left: $navButtonsPadding;
+      border: solid 2px var(--primary-color);
+      border-radius: 50px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
 
-    &:hover {
-      background-color: var(--hover-color);
-    }
-
-    @media screen and (max-width: var(--mobile-width)) {
-      padding: 0 2px;
-      font-size: 1rem;
+      &:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+      }
     }
   }
 }
