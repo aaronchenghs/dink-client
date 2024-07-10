@@ -10,7 +10,7 @@ interface NavigationLink {
 }
 
 const NAVIGATION: NavigationLink[] = [
-  { name: "Forums", route: ROUTES.FORUMS },
+  { name: "Community", route: ROUTES.COMMUNITY },
   { name: "Events", route: ROUTES.EVENTS },
   { name: "Shop", route: ROUTES.SHOP },
   { name: "Court Locator", route: ROUTES.COURT_LOCATOR },

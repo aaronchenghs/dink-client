@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./login.styles.scss";
 import AccentTypography from "../../assets/AccentComponents/AccentTypography";
+import InputField from "../../assets/AccentComponents/InputField";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -22,6 +24,12 @@ const Login: React.FC = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setConfirmPassword(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -53,7 +61,7 @@ const Login: React.FC = () => {
           <div className="user_options-registered">
             <h2 className="user_registered-title">Have an account?</h2>
             <p className="user_registered-text">
-              Login to access your account and enjoy our services.
+              Login to access your account and connect with other players.
             </p>
             <button
               className="user_registered-login"
@@ -71,26 +79,18 @@ const Login: React.FC = () => {
             onSubmit={handleSubmit}
           >
             <h2 className="forms_title">Login</h2>
-            <div className="forms_field">
-              <input
-                type="email"
-                className="forms_field-input"
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-              <label className="forms_field-label">Email</label>
-            </div>
-            <div className="forms_field">
-              <input
-                type="password"
-                className="forms_field-input"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-              <label className="forms_field-label">Password</label>
-            </div>
+            <InputField
+              label="Email"
+              value={email}
+              onChange={handleEmailChange}
+              type="email"
+            />
+            <InputField
+              label="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              type="password"
+            />
             <div className="forms_buttons">
               <button type="submit" className="forms_buttons-action">
                 Login
@@ -102,26 +102,24 @@ const Login: React.FC = () => {
             onSubmit={handleSubmit}
           >
             <h2 className="forms_title">Sign Up</h2>
-            <div className="forms_field">
-              <input
-                type="email"
-                className="forms_field-input"
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-              <label className="forms_field-label">Email</label>
-            </div>
-            <div className="forms_field">
-              <input
-                type="password"
-                className="forms_field-input"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-              <label className="forms_field-label">Password</label>
-            </div>
+            <InputField
+              label="Email"
+              value={email}
+              onChange={handleEmailChange}
+              type="email"
+            />
+            <InputField
+              label="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              type="password"
+            />
+            <InputField
+              label="Confirm Password"
+              value={confirmpassword}
+              onChange={handleConfirmPasswordChange}
+              type="password"
+            />
             <div className="forms_buttons">
               <button type="submit" className="forms_buttons-action">
                 Sign Up
