@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import "./footer.styles.scss";
+import AccentTypography from "../../assets/AccentComponents/AccentTypography";
 
 const themes = [
   { name: "Pickle Yellow (Default)", value: "pickle-yellow" },
@@ -34,7 +35,9 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="theme-selector">
-        <label htmlFor="theme-select">Choose Theme:</label>
+        <AccentTypography htmlFor="theme-select" tag={"body"} inverted>
+          Choose Theme:
+        </AccentTypography>
         <select id="theme-select" value={theme} onChange={handleChangeTheme}>
           {themes.map((themeOption) => (
             <option key={themeOption.value} value={themeOption.value}>
