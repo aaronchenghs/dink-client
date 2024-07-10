@@ -42,6 +42,8 @@ const Login: React.FC = () => {
     localStorage.setItem("authMode", value ? "signup" : "login");
   };
 
+  useEffect(() => {}, []);
+
   return (
     <div className="user">
       <div className="user_options-container">

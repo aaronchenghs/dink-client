@@ -62,7 +62,8 @@ $navButtonsPadding: 20px;
       border-radius: 2px;
 
       &:hover {
-        background-color: var(--secondary-color);
+        color: var(--highlighted-text-color);
+        transform: translate(-1px, -1px);
       }
 
       @media screen and (max-width: var(--mobile-width)) {
