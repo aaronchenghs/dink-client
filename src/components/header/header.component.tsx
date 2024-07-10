@@ -2,9 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./header.styles.scss";
 import { ROUTES } from "../../global-utils";
-import DEFAULT_PADDLE_ICON from "../../assets/default_icons";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import ProfileButton from "./UserNavigation/profilebutton.component";
 
 interface NavigationLink {
   name: string;
@@ -20,7 +18,6 @@ const NAVIGATION: NavigationLink[] = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const $iconPath = useSelector((state: RootState) => state.user.iconPath);
 
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(window.scrollY);
@@ -54,13 +51,7 @@ const Header = () => {
             {link.name}
           </button>
         ))}
-        <button className="profileButton">
-          {$iconPath ? (
-            <img src={$iconPath} alt="User Icon" />
-          ) : (
-            <DEFAULT_PADDLE_ICON />
-          )}
-        </button>
+        <ProfileButton />
       </div>
     </div>
   );

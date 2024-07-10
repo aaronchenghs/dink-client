@@ -3,8 +3,8 @@ $pickle-yellow: #ccff00;
 $light-secondary-color: #1e90ff;
 $dark-secondary-color: #1362b2;
 $light-accent-color: black;
-$light-background-color: #f5f5f5;
-$light-text-color: #333333;
+$light-background-color: #eaeaea;
+$light-text-color: #151515;
 
 // Extendewd Colors
 $pickle-green: #adff2f;
@@ -12,6 +12,7 @@ $pickle-orange: #ffa500;
 $pickle-blue: #1e90ff;
 $pickle-white: #ffffff;
 $pickle-red: #ff4500;
+$dark-percentage: 5%;
 
 // Sizes
 $mobile-width: 767px;
@@ -23,6 +24,7 @@ $primary-font: "Poppins";
 // CSS Variables
 :root {
   --primary-color: #{$pickle-yellow};
+  --primary-color-dark: #{darken($pickle-yellow, $dark-percentage)};
   --secondary-color: #{$light-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};
@@ -31,6 +33,7 @@ $primary-font: "Poppins";
 
 [data-theme="pickle-green"] {
   --primary-color: #{$pickle-green};
+  --primary-color-dark: #{darken($pickle-green, $dark-percentage)};
   --secondary-color: #{$light-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};
@@ -38,6 +41,7 @@ $primary-font: "Poppins";
 }
 [data-theme="pickle-orange"] {
   --primary-color: #{$pickle-orange};
+  --primary-color-dark: #{darken($pickle-orange, $dark-percentage)};
   --secondary-color: #{$light-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};
@@ -45,6 +49,7 @@ $primary-font: "Poppins";
 }
 [data-theme="pickle-blue"] {
   --primary-color: #{$pickle-blue};
+  --primary-color-dark: #{darken($pickle-blue, $dark-percentage)};
   --secondary-color: #{$dark-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};
@@ -52,6 +57,7 @@ $primary-font: "Poppins";
 }
 [data-theme="pickle-white"] {
   --primary-color: #{$pickle-white};
+  --primary-color-dark: #{silver};
   --secondary-color: #{$light-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};
@@ -59,6 +65,7 @@ $primary-font: "Poppins";
 }
 [data-theme="pickle-red"] {
   --primary-color: #{$pickle-red};
+  --primary-color-dark: #{darken($pickle-red, $dark-percentage)};
   --secondary-color: #{$light-secondary-color};
   --accent-color: #{$light-accent-color};
   --background-color: #{$light-background-color};

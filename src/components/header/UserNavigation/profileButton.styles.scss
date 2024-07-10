@@ -1,0 +1,45 @@
+@import "../../../variables.scss";
+@import "../header.styles.scss";
+
+.profile-button-container {
+  position: relative;
+  margin-left: $navButtonsPadding;
+}
+
+.profileButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border: solid 2px var(--primary-color);
+  border-radius: 50px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+
+  &.animate {
+    animation: pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+}
+.active {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
