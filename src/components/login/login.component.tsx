@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./login.styles.scss";
-import AccentTypography from "../../assets/AccentComponents/AccentTypography";
-import InputField from "../../assets/AccentComponents/InputField";
+import AccentTypography from "../../assets/accentcomponents/AccentTypography";
+import InputField from "../../assets/accentcomponents/InputField";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");

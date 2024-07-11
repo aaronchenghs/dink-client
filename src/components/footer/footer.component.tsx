@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import "./footer.styles.scss";
-import AccentTypography from "../../assets/AccentComponents/AccentTypography";
+import AccentTypography from "../../assets/accentcomponents/AccentTypography";
 
 const themes = [
   { name: "Pickle Yellow (Default)", value: "pickle-yellow" },

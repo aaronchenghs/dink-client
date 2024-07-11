@@ -1,6 +1,6 @@
 export enum ROUTES {
   HOME = "/",
-  COURT_LOCATOR = "/courtlocator",
+  COURT_MAP = "/map",
   COMMUNITY = "/community",
   SHOP = "/shop",
   EVENTS = "/events",

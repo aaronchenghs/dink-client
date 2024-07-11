@@ -13,7 +13,7 @@ const NAVIGATION: NavigationLink[] = [
   { name: "Community", route: ROUTES.COMMUNITY },
   { name: "Events", route: ROUTES.EVENTS },
   { name: "Shop", route: ROUTES.SHOP },
-  { name: "Court Locator", route: ROUTES.COURT_LOCATOR },
+  { name: "Court Map", route: ROUTES.COURT_MAP },
 ];
 
 const Header = () => {

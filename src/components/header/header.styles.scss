@@ -9,7 +9,7 @@ $navButtonsPadding: 20px;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--text-color);
+  background-color: var(--text-color); // $light-text-color
   transition:
     top 0.3s ease-in-out,
     background-color 0.2s ease-in-out;

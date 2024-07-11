@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import AccentTypography from "../../../assets/AccentComponents/AccentTypography";
+import AccentTypography from "../../../assets/accentcomponents/AccentTypography";
 import "./hero.styles.scss";
 import { RootState } from "../../../store";
 
