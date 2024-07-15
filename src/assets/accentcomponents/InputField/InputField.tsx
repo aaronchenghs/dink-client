@@ -6,6 +6,7 @@ interface InputFieldProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
+  error?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -13,17 +14,20 @@ const InputField: React.FC<InputFieldProps> = ({
   value,
   onChange,
   type,
+  error,
 }) => {
   return (
     <div className="forms_field">
       <input
         type={type}
-        className="forms_field-input"
+        className={`forms_field-input ${error ? "input-error" : ""}`}
         value={value}
         onChange={onChange}
         required
+        placeholder=" "
       />
       <label className="forms_field-label">{label}</label>
+      {error && <div className="error-message">{error}</div>}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import AccentTypography from "../../assets/accentcomponents/AccentTypography";
+import AccentTypography from "../../assets/accentcomponents/AccentTypography/AccentTypography";
 import Hero from "./Hero/hero.component";
 import "./home.styles.scss";
 

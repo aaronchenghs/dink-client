@@ -1,13 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./login.styles.scss";
-import AccentTypography from "../../assets/accentcomponents/AccentTypography";
-import InputField from "../../assets/accentcomponents/InputField";
+import { THUNK_signupUser } from "../../slices/authSlice";
+import { ThunkDispatch } from "redux-thunk";
+import { AnyAction } from "redux";
+
+// ...
+
+import { useDispatch } from "react-redux";
+import {
+  validateEmail,
+  validatePassword,
+  validateConfirmPassword,
+} from "./loginUtils";
+import AccentTypography from "../../assets/accentcomponents/AccentTypography/AccentTypography";
+import InputField from "../../assets/accentcomponents/InputField/InputField";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const dispatch: ThunkDispatch<unknown, unknown, AnyAction> = useDispatch();
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isLogin, setIsLogin] = useState(false);
+  const [errors, setErrors] = useState<{
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }>({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   useEffect(() => {
     const authMode = localStorage.getItem("authMode");
@@ -20,29 +43,53 @@ const Login: React.FC = () => {
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    setErrors({ ...errors, email: validateEmail(e.target.value) });
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    setErrors({ ...errors, password: validatePassword(e.target.value) });
   };
 
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     setConfirmPassword(e.target.value);
+    setErrors({
+      ...errors,
+      confirmPassword: validateConfirmPassword(password, e.target.value),
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    const emailError = validateEmail(email);
+    const passwordError = validatePassword(password);
+    const confirmPasswordError = validateConfirmPassword(
+      password,
+      confirmPassword
+    );
+
+    if (emailError || passwordError || confirmPasswordError) {
+      setErrors({
+        email: emailError || "",
+        password: passwordError || "",
+        confirmPassword: confirmPasswordError || "",
+      });
+      return;
+    }
+
+    if (!isLogin) {
+      dispatch(THUNK_signupUser({ email, password }));
+    } else {
+      //dispatch(THUNK_signinUser({ email, password }));
+    }
   };
 
   const handleIsLoginClick = (value: boolean) => {
     setIsLogin(value);
     localStorage.setItem("authMode", value ? "signup" : "login");
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div className="user">
@@ -86,12 +133,14 @@ const Login: React.FC = () => {
               value={email}
               onChange={handleEmailChange}
               type="email"
+              error={errors.email}
             />
             <InputField
               label="Password"
               value={password}
               onChange={handlePasswordChange}
               type="password"
+              error={errors.password}
             />
             <div className="forms_buttons">
               <button type="submit" className="forms_buttons-action">
@@ -109,18 +158,21 @@ const Login: React.FC = () => {
               value={email}
               onChange={handleEmailChange}
               type="email"
+              error={errors.email}
             />
             <InputField
               label="Password"
               value={password}
               onChange={handlePasswordChange}
               type="password"
+              error={errors.password}
             />
             <InputField
               label="Confirm Password"
-              value={confirmpassword}
+              value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               type="password"
+              error={errors.confirmPassword}
             />
             <div className="forms_buttons">
               <button type="submit" className="forms_buttons-action">

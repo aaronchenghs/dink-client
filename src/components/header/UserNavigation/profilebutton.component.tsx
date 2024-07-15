@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./profileButton.styles.scss";
 import { RootState } from "../../../store";
 import DEFAULT_PADDLE_ICON from "../../../assets/default_icons";
-import ContextMenu from "../../../assets/accentcomponents/ContextMenu";
+import ContextMenu from "../../../assets/accentcomponents/ContextMenu/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../global-utils";
 

@@ -3,7 +3,7 @@ import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { useGeolocated } from "react-geolocated";
 import "./courtmap.styles.scss";
 import { Court } from "../../models/mapModels";
-import InputField from "../../assets/accentcomponents/InputField";
+import InputField from "../../assets/accentcomponents/InputField/InputField";
 
 const courts: Court[] = [
   {

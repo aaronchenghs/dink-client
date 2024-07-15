@@ -6,7 +6,7 @@ $light-accent-color: black;
 $light-background-color: #eaeaea;
 $light-text-color: #151515;
 
-// Extendewd Colors
+// Extended Colors
 $pickle-green: #adff2f;
 $pickle-orange: #ffa500;
 $pickle-blue: #1e90ff;
@@ -30,6 +30,7 @@ $primary-font: "Poppins";
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
   --highlighted-text-color: #{silver};
+  --error: #{$pickle-red};
 }
 
 [data-theme="pickle-green"] {
@@ -40,6 +41,7 @@ $primary-font: "Poppins";
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
   --highlighted-text-color: #{silver};
+  --error: #{$pickle-red};
 }
 [data-theme="pickle-orange"] {
   --primary-color: #{$pickle-orange};
@@ -49,6 +51,7 @@ $primary-font: "Poppins";
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
   --highlighted-text-color: #{$light-background-color};
+  --error: #{$pickle-red};
 }
 [data-theme="pickle-blue"] {
   --primary-color: #{$pickle-blue};
@@ -58,6 +61,7 @@ $primary-font: "Poppins";
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
   --highlighted-text-color: #{$light-background-color};
+  --error: #{$pickle-red};
 }
 [data-theme="pickle-white"] {
   --primary-color: #{$pickle-white};
@@ -67,6 +71,7 @@ $primary-font: "Poppins";
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
   --highlighted-text-color: #{$light-secondary-color};
+  --error: #{$pickle-red};
 }
 [data-theme="pickle-red"] {
   --primary-color: #{$pickle-red};
@@ -76,6 +81,7 @@ $primary-font: "Poppins";
   --background-color: #{$light-background-color};
   --text-color: #{$light-text-color};
   --highlighted-text-color: #{$light-background-color};
+  --error: #{$pickle-red};
 }
 
 * {
