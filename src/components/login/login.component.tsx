@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./login.styles.scss";
-import { THUNK_signupUser } from "../../slices/authSlice";
+import { THUNK_signinUser, THUNK_signupUser } from "../../slices/authSlice";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 
@@ -14,8 +14,11 @@ import {
 } from "./loginUtils";
 import AccentTypography from "../../assets/accentcomponents/AccentTypography/AccentTypography";
 import InputField from "../../assets/accentcomponents/InputField/InputField";
+import { ROUTES } from "../../global-utils";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch: ThunkDispatch<unknown, unknown, AnyAction> = useDispatch();
 
   const [email, setEmail] = useState<string>("");
@@ -65,10 +68,9 @@ const Login: React.FC = () => {
     e.preventDefault();
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
-    const confirmPasswordError = validateConfirmPassword(
-      password,
-      confirmPassword
-    );
+    const confirmPasswordError = isLogin
+      ? ""
+      : validateConfirmPassword(password, confirmPassword);
 
     if (emailError || passwordError || confirmPasswordError) {
       setErrors({
@@ -82,7 +84,11 @@ const Login: React.FC = () => {
     if (!isLogin) {
       dispatch(THUNK_signupUser({ email, password }));
     } else {
-      //dispatch(THUNK_signinUser({ email, password }));
+      dispatch(THUNK_signinUser({ email, password })).then((result) => {
+        if (result.meta.requestStatus === "fulfilled") {
+          navigate(ROUTES.HOME);
+        }
+      });
     }
   };
 

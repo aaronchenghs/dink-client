@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import AccentTypography from "../../../assets/accentcomponents/AccentTypography/AccentTypography";
 import "./hero.styles.scss";
-import { RootState } from "../../../store";
+import { AppState } from "../../../store";
 
 const Hero = () => {
-  const $name = useSelector((state: RootState) => state.user.name);
+  const $name = useSelector((state: AppState) => state.user.name);
 
   return (
     <div className="hero">

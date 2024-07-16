@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./profileButton.styles.scss";
-import { RootState } from "../../../store";
+import { AppState } from "../../../store";
 import DEFAULT_PADDLE_ICON from "../../../assets/default_icons";
 import ContextMenu from "../../../assets/accentcomponents/ContextMenu/ContextMenu";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +13,8 @@ const ProfileButton = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const $iconPath = useSelector((state: RootState) => state.user.iconPath);
-  const $name = useSelector((state: RootState) => state.user.name);
+  const $iconPath = useSelector((state: AppState) => state.user.iconPath);
+  const $name = useSelector((state: AppState) => state.user.name);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
