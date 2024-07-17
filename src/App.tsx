@@ -7,8 +7,15 @@ import "./App.scss";
 import Login from "./components/login/login.component";
 import CourtMap from "./components/courtmap/courtmap.component";
 import GoogleMapsLoader from "./components/courtmap/googlemapsloader";
+import { useEffect } from "react";
+import { dispatch } from "./store";
+import { initializeAuth } from "./services";
 
 const App = () => {
+  useEffect(() => {
+    initializeAuth(dispatch);
+  }, [dispatch]);
+
   return (
     <div className="app-container">
       <Header />

@@ -25,8 +25,13 @@ const userSlice = createSlice({
   name: "user",
   initialState: USER_INITIAL_STATE,
   reducers: {
-    setName: (state, action: PayloadAction<string>) => {
-      state.name = action.payload;
+    setUser: (state, action: PayloadAction<IUserState>) => {
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+      state.dob = action.payload.dob;
+      state.iconPath = action.payload.iconPath;
+      state.loading = false;
     },
   },
   extraReducers: (builder) => {
@@ -44,6 +49,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setName } = userSlice.actions;
+export const { setUser } = userSlice.actions;
 export default userSlice.reducer;
 export type { IUserState };

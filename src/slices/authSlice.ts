@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { API_URL } from "../services";
+import { buildAxiosCall } from "../services";
+import axiosInstance from "../axiosConfig";
 
 interface IAuthState {
   token: string | null;
@@ -31,12 +31,15 @@ export const THUNK_signupUser = createAsyncThunk<
   { rejectValue: SignupError }
 >("auth/signup", async (userData, thunkAPI) => {
   try {
-    const { data } = await axios.post(`${API_URL}auth/signup`, userData);
+    const { data } = await buildAxiosCall<
+      SignupResponse,
+      { email: string; password: string }
+    >("POST", "auth/signup", userData);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue({
-      message: (error as unknown as { response: { data: { message: string } } })
-        .response.data.message,
+      message: (error as { response: { data: { message: string } } }).response
+        .data.message,
     });
   }
 });
@@ -61,12 +64,35 @@ export const THUNK_signinUser = createAsyncThunk<
   { rejectValue: SignupError }
 >("auth/signin", async (userData, thunkAPI) => {
   try {
-    const { data } = await axios.post(`${API_URL}auth/signin`, userData);
+    const { data } = await buildAxiosCall<
+      SigninResponse,
+      { email: string; password: string }
+    >("POST", "auth/signin", userData);
+    localStorage.setItem("token", data.token); // Store token in local storage
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue({
-      message: (error as unknown as { response: { data: { message: string } } })
-        .response.data.message,
+      message: (error as { response: { data: { message: string } } }).response
+        .data.message,
+    });
+  }
+});
+
+export const THUNK_refreshToken = createAsyncThunk<
+  { token: string },
+  void,
+  { rejectValue: SignupError }
+>("auth/refreshToken", async (_, thunkAPI) => {
+  try {
+    const { data } = await axiosInstance.post<{ token: string }>(
+      "auth/refresh-token"
+    );
+    localStorage.setItem("token", data.token); // Store new token in local storage
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue({
+      message: (error as { response: { data: { message: string } } }).response
+        .data.message,
     });
   }
 });
@@ -78,6 +104,11 @@ const authSlice = createSlice({
     logout(state) {
       state.token = null;
       localStorage.removeItem("token");
+    },
+    setToken(state, action) {
+      console.log("Setting token", action.payload);
+      state.token = action.payload;
+      localStorage.setItem("token", action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -92,9 +123,34 @@ const authSlice = createSlice({
       .addCase(THUNK_signupUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.message || "An error occurred";
+      })
+      .addCase(THUNK_signinUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(THUNK_signinUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.token = action.payload.token;
+      })
+      .addCase(THUNK_signinUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "An error occurred";
+      })
+      .addCase(THUNK_refreshToken.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(THUNK_refreshToken.fulfilled, (state, action) => {
+        state.loading = false;
+        state.token = action.payload.token;
+      })
+      .addCase(THUNK_refreshToken.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "An error occurred";
       });
   },
 });
 
+export const { logout, setToken } = authSlice.actions;
 export default authSlice.reducer;
 export type { IAuthState };

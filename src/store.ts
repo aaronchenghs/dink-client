@@ -17,7 +17,8 @@ const store = configureStore({
 
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
+export const dispatch = store.dispatch;
+export const state = store.getState();
 export const useAppDispatch = () => useReduxDispatch<AppDispatch>();
 
 export default store;
