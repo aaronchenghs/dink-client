@@ -1,5 +1,5 @@
 import axios from "axios";
-import { refreshToken } from "./services";
+import { refreshToken } from "../services";
 
 const axiosInstance = axios.create({
   baseURL: "https://localhost:7015/api",

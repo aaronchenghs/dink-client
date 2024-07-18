@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import axiosInstance from "./axiosConfig";
+import axiosInstance from "./middleware/axiosConfig";
 import { AppDispatch } from "./store";
 import { setToken, THUNK_refreshToken } from "./slices/authSlice";
 import { setUser } from "./slices/userSlice";

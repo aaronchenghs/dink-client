@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { buildAxiosCall } from "../services";
-import axiosInstance from "../axiosConfig";
+import axiosInstance from "../middleware/axiosConfig";
 
 interface IAuthState {
   token: string | null;

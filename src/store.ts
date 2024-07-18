@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch as useReduxDispatch } from "react-redux";
 import authReducer from "./slices/authSlice";
 import userReducer from "./slices/userSlice";
-import { thunkMiddleware } from "./slices/thunkMiddleware";
+import { thunkMiddleware } from "./middleware/thunkMiddleware";
 
 const customMiddleware = [thunkMiddleware];
 

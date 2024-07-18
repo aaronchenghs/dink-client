@@ -5,7 +5,7 @@ import {
   addLoadingMessage,
   removeLoadingMessage,
   showUniversalFeedbackComponent,
-} from "./commonSlice";
+} from "../slices/commonSlice";
 
 // Define the MiddlewareActionType
 type MiddlewareActionType = {
