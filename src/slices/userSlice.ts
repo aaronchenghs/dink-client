@@ -3,20 +3,28 @@ import { THUNK_signinUser } from "./authSlice";
 
 interface IUserState {
   id: string | null;
-  name: string | null;
+  username: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  createdAt: string | null;
   email: string | null;
-  iconPath: string | null;
   dob: string | null;
+  iconPath: string | null;
+  isActive: boolean;
   loading: boolean;
   error: string | null;
 }
 
 export const USER_INITIAL_STATE: IUserState = {
   id: null,
-  name: null,
+  firstName: null,
+  lastName: null,
   email: null,
   dob: null,
   iconPath: null,
+  createdAt: null,
+  isActive: true,
+  username: null,
   loading: false,
   error: null,
 };
@@ -26,11 +34,25 @@ const userSlice = createSlice({
   initialState: USER_INITIAL_STATE,
   reducers: {
     setUser: (state, action: PayloadAction<IUserState>) => {
-      state.id = action.payload.id;
-      state.name = action.payload.name;
-      state.email = action.payload.email;
-      state.dob = action.payload.dob;
-      state.iconPath = action.payload.iconPath;
+      const {
+        id,
+        firstName,
+        lastName,
+        email,
+        dob,
+        iconPath,
+        isActive,
+        username,
+      } = action.payload;
+      state.id = id;
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.email = email;
+      state.dob = dob;
+      state.iconPath = iconPath;
+      state.isActive = isActive;
+      state.username = username;
+
       state.loading = false;
     },
   },
@@ -39,9 +61,14 @@ const userSlice = createSlice({
       const { user, token } = action.payload;
 
       state.id = user.id;
-      state.name = user.username;
+      state.firstName = user.firstName;
+      state.lastName = user.lastName;
       state.email = user.email;
       state.dob = user.dob;
+      state.iconPath = user.iconPath;
+      state.isActive = user.isActive;
+      state.username = user.username;
+
       state.loading = false;
 
       localStorage.setItem("token", token);

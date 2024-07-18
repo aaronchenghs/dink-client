@@ -48,10 +48,11 @@ interface SigninResponse {
   token: string;
   user: {
     id: string;
-    username: string;
-    email: string;
     firstName: string | null;
     lastName: string | null;
+    username: string;
+    email: string;
+    iconPath: string | null;
     dob: string;
     createdAt: string;
     isActive: boolean;
@@ -106,7 +107,6 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
     },
     setToken(state, action) {
-      console.log("Setting token", action.payload);
       state.token = action.payload;
       localStorage.setItem("token", action.payload);
     },

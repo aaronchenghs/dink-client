@@ -1,165 +1,130 @@
-// import { Middleware } from "@reduxjs/toolkit";
-// import { ThunkOperation } from "../services";
-// import {
-//   addLoadingMessage,
-//   removeLoadingMessage,
-//   showUniversalFeedbackComponent,
-// } from "./commonSlice";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Middleware } from "@reduxjs/toolkit";
+import { ThunkOperation } from "../services";
+import {
+  addLoadingMessage,
+  removeLoadingMessage,
+  showUniversalFeedbackComponent,
+} from "./commonSlice";
 
-// // Made this through trail and error
-// type MiddlewareActionType = {
-//   /** Only present if meta.requestStatus === 'rejected' && meta.aborted === false */
-//   error?: {
-//     message: string;
-//     name: string;
-//     stack: string;
-//   };
-//   /** Only present if the action is from a Thunk */
-//   meta?:
-//     | {
-//         arg: unknown;
-//         requestId: string;
-//         requestStatus: "pending" | "fulfilled";
-//       }
-//     | {
-//         arg: unknown;
-//         requestId: string;
-//         requestStatus: "rejected";
-//         aborted: boolean;
-//         condition: boolean;
-//         rejectedWithValue: boolean;
-//       };
-//   /**
-//      * ### Thunks will be in this format:
-//      *
-// * type ThunkName = string;
-//      * type Status = 'rejected' | 'pending' | 'fulfilled';
-//      *
-//      * // Example: 'getDocuments/pending'
-//      * `${ThunkName}/${Status}`;
-//      *
+// Define the MiddlewareActionType
+type MiddlewareActionType = {
+  error?: {
+    message: string;
+    name: string;
+    stack: string;
+  };
+  meta?: {
+    arg: unknown;
+    requestId: string;
+    requestStatus: "pending" | "fulfilled" | "rejected";
+    aborted?: boolean;
+    condition?: boolean;
+    rejectedWithValue?: boolean;
+  };
+  type: string;
+  payload: unknown;
+};
 
-//      *
-//      * ### Reducers will be in this format:
-//      *
-// * `${ThunkName}`;
-//      *
+// Type guard to check if the action is of type MiddlewareActionType
+function isMiddlewareActionType(action: any): action is MiddlewareActionType {
+  return typeof action.type === "string" && action.meta !== undefined;
+}
 
-//      */
-//   type: string;
-//   payload: unknown;
-// };
+export const thunkMiddleware: Middleware =
+  (api) => (next) => (action: unknown) => {
+    // Use type guard to check if action is MiddlewareActionType
+    if (!isMiddlewareActionType(action) || !action.meta) {
+      return next(action);
+    }
 
-// export const thunkMiddleware: Middleware =
-//   (api) => (next) => (action: MiddlewareActionType) => {
-//     // The action is not from a thunk, so we don't care about it
-//     if (action.meta === undefined) {
-//       return next(action);
-//     }
+    const requestStatus = action.meta.requestStatus;
+    const thunkNameParts = action.type.split("/")[0]?.split("-") ?? [];
+    const thunkId = action.type.split("/")[0] ?? "";
+    const thunkOperation = thunkNameParts[0] as ThunkOperation;
+    const thunkSubject = thunkNameParts[1] ?? "";
 
-//     const requestStatus = action.meta.requestStatus;
-//     const thunkNameParts = action.type.split("/")[0]?.split("-") ?? [];
-//     const thunkId = action.type.split("/")[0] ?? "";
-//     /**
-//      * Thunk name format: 'method-subject-extra/state'
-//      * Example:
-//      * - 'GET-Documents-By Id/pending'
-//      */
-//     const thunkOperation = thunkNameParts[0] as ThunkOperation;
-//     const thunkSubject = thunkNameParts[1] ?? "";
+    let thunkMethodVerb = "";
+    let thunkSuccessVerb = "";
+    switch (thunkOperation) {
+      case ThunkOperation.GET: {
+        thunkMethodVerb = "Loading";
+        break;
+      }
+      case ThunkOperation.CREATE:
+      case ThunkOperation.UPSERT:
+      case ThunkOperation.UPDATE: {
+        thunkMethodVerb = "Saving";
+        thunkSuccessVerb = "saved";
+        break;
+      }
+      case ThunkOperation.DELETE: {
+        thunkMethodVerb = "Deleting";
+        thunkSuccessVerb = "deleted";
+        break;
+      }
+    }
 
-//     let thunkMethodVerb = "";
-//     let thunkSuccessVerb = "";
-//     switch (thunkOperation) {
-//       case ThunkOperation.GET: {
-//         thunkMethodVerb = "Loading";
-//         break;
-//       }
-//       case ThunkOperation.CREATE:
-//       case ThunkOperation.UPSERT:
-//       case ThunkOperation.UPDATE: {
-//         thunkMethodVerb = "Saving";
-//         thunkSuccessVerb = "saved";
-//         break;
-//       }
-//       case ThunkOperation.DELETE: {
-//         thunkMethodVerb = "Deleting";
-//         thunkSuccessVerb = "deleted";
-//         break;
-//       }
-//     }
+    const loadingMessage = `${thunkMethodVerb} ${thunkSubject}`;
+    const whiteListedThunks: string[] = ["Aspect Ratio of Intel Report"];
 
-//     const loadingMessage = `${thunkMethodVerb} ${thunkSubject}`;
+    switch (requestStatus) {
+      case "pending": {
+        api.dispatch(
+          addLoadingMessage({
+            id: thunkId,
+            message: loadingMessage,
+          })
+        );
+        break;
+      }
+      case "rejected": {
+        api.dispatch(
+          removeLoadingMessage({
+            id: thunkId,
+            message: loadingMessage,
+          })
+        );
 
-//     const whiteListedThunks: string[] = ["Aspect Ratio of Intel Report"];
+        if (action.meta.aborted) {
+          break;
+        }
 
-//     switch (requestStatus) {
-//       case "pending": {
-//         // Leaving for now
-//         // console.log('DEBUG | Pending Action:', action);
+        if (!whiteListedThunks.includes(thunkSubject)) {
+          api.dispatch(
+            showUniversalFeedbackComponent({
+              message: `Error while ${thunkMethodVerb} ${thunkSubject}`,
+              severity: "error",
+              vertical: "bottom",
+              horizontal: "left",
+            })
+          );
+        }
 
-//         api.dispatch(
-//           addLoadingMessage({
-//             id: thunkId,
-//             message: loadingMessage,
-//           })
-//         );
-//         break;
-//       }
-//       case "rejected": {
-//         api.dispatch(
-//           removeLoadingMessage({
-//             id: thunkId,
-//             message: loadingMessage,
-//           })
-//         );
+        break;
+      }
+      case "fulfilled": {
+        api.dispatch(
+          removeLoadingMessage({
+            id: thunkId,
+            message: loadingMessage,
+          })
+        );
 
-//         // Action was aborted if this is true, so not actually 'rejected'
-//         if (action.meta.aborted) {
-//           break;
-//         }
+        if (thunkOperation !== ThunkOperation.GET) {
+          api.dispatch(
+            showUniversalFeedbackComponent({
+              message: `${thunkSubject} ${thunkSuccessVerb} successfully`,
+              severity: "success",
+              vertical: "bottom",
+              horizontal: "left",
+            })
+          );
+        }
 
-//         if (whiteListedThunks.includes(thunkSubject)) {
-//           break;
-//         }
+        break;
+      }
+    }
 
-//         // console.error('DEBUG | Rejected Action:', action);
-
-//         api.dispatch(
-//           showUniversalFeedbackComponent({
-//             message: `Error while ${thunkMethodVerb} ${thunkSubject}`,
-//             severity: "error",
-//             vertical: "bottom",
-//             horizontal: "left",
-//           })
-//         );
-
-//         break;
-//       }
-//       case "fulfilled": {
-//         // console.log('DEBUG | Fulfilled Action:', action);
-
-//         api.dispatch(
-//           removeLoadingMessage({
-//             id: thunkId,
-//             message: loadingMessage,
-//           })
-//         );
-
-//         if (thunkOperation !== ThunkOperation.GET) {
-//           api.dispatch(
-//             showUniversalFeedbackComponent({
-//               message: `${thunkSubject} ${thunkSuccessVerb} successfully`,
-//               severity: "success",
-//               vertical: "bottom",
-//               horizontal: "left",
-//             })
-//           );
-//         }
-
-//         break;
-//       }
-//     }
-
-//     return next(action);
-//   };
+    return next(action);
+  };

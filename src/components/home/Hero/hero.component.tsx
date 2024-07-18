@@ -4,8 +4,7 @@ import "./hero.styles.scss";
 import { AppState } from "../../../store";
 
 const Hero = () => {
-  const $name = useSelector((state: AppState) => state.user.name);
-
+  const $name = useSelector((state: AppState) => state.user.username);
   return (
     <div className="hero">
       <div className="hero-content">

@@ -14,7 +14,7 @@ const ProfileButton = () => {
 
   const menuRef = useRef<HTMLDivElement | null>(null);
   const $iconPath = useSelector((state: AppState) => state.user.iconPath);
-  const $name = useSelector((state: AppState) => state.user.name);
+  const $userId = useSelector((state: AppState) => state.user.id);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -49,7 +49,7 @@ const ProfileButton = () => {
   }, []);
 
   useEffect(() => {
-    if (!$name) {
+    if (!$userId) {
       const interval = setInterval(() => {
         setShouldAnimate(true);
         setTimeout(() => setShouldAnimate(false), 1000);
@@ -57,9 +57,9 @@ const ProfileButton = () => {
 
       return () => clearInterval(interval);
     }
-  }, [$name]);
+  }, [$userId]);
 
-  const menuItems = $name
+  const menuItems = $userId
     ? [
         { label: "Profile", action: () => routeTo(ROUTES.PROFILE) },
         { label: "Settings", action: () => routeTo(ROUTES.SETTINGS) },
@@ -79,7 +79,7 @@ const ProfileButton = () => {
   return (
     <div className={`profile-button-container`} ref={menuRef}>
       <button
-        className={`profileButton ${menuVisible ? "active" : ""} ${!$name && shouldAnimate ? "animate" : ""}`}
+        className={`profileButton ${menuVisible ? "active" : ""} ${!$userId && shouldAnimate ? "animate" : ""}`}
         onClick={toggleMenu}
       >
         {$iconPath ? (
