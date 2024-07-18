@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   UniversalFeedbackComponentInput,
   UniversalFeedbackComponentState,
-} from "./feedbackSlice";
+} from "./FeedbackState";
 
 interface CommonState {
   settingsOpen: boolean;
