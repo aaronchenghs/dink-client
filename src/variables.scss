@@ -23,14 +23,21 @@ $primary-font: "Poppins";
 
 // CSS Variables
 :root {
-  --primary-color: #{$pickle-yellow};
-  --primary-color-dark: #{darken($pickle-yellow, $dark-percentage)};
-  --secondary-color: #{$light-secondary-color};
-  --accent-color: #{$light-accent-color};
-  --background-color: #{$light-background-color};
-  --text-color: #{$light-text-color};
-  --highlighted-text-color: #{silver};
-  --error: #{$pickle-red};
+  --pickle-yellow: #ccff00;
+  --pickle-green: #adff2f;
+  --pickle-orange: #ffa500;
+  --pickle-blue: #1e90ff;
+  --pickle-white: #ffffff;
+  --pickle-red: #ff4500;
+
+  --primary-color: var(--pickle-yellow);
+  --primary-color-dark: darken(var(--pickle-yellow), 5%);
+  --secondary-color: #1e90ff;
+  --accent-color: black;
+  --background-color: #eaeaea;
+  --text-color: #151515;
+  --highlighted-text-color: silver;
+  --error: var(--pickle-red);
 }
 
 [data-theme="pickle-green"] {

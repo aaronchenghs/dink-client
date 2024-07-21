@@ -5,7 +5,6 @@ import {
   Slide,
   SlideProps,
   Snackbar,
-  SnackbarCloseReason,
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -26,10 +25,7 @@ export const UniversalFeedback = (): React.ReactElement | null => {
    * @param event Not used
    * @param reason This is nullable for compatibility with the MUI Alert
    */
-  const closeFeedbackComponent = (
-    _: Event | React.SyntheticEvent<unknown>,
-    reason?: SnackbarCloseReason
-  ) => {
+  const closeFeedbackComponent = (_: Event | React.SyntheticEvent<unknown>) => {
     dispatch(hideUniversalFeedbackComponent());
   };
 

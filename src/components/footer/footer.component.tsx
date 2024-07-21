@@ -1,14 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
 import "./footer.styles.scss";
 import AccentTypography from "../../assets/accentcomponents/AccentTypography/AccentTypography";
+import { getCssVariable } from "../../hooks/useCssVariable";
 
 const themes = [
-  { name: "Pickle Yellow (Default)", value: "pickle-yellow" },
-  { name: "Pickle Green", value: "pickle-green" },
-  { name: "Pickle Orange", value: "pickle-orange" },
-  { name: "Pickle Blue", value: "pickle-blue" },
-  { name: "Pickle White", value: "pickle-white" },
-  { name: "Pickle Red", value: "pickle-red" },
+  {
+    name: "Pickle Yellow (Default)",
+    value: "pickle-yellow",
+    cssVar: "--pickle-yellow",
+  },
+  { name: "Pickle Orange", value: "pickle-orange", cssVar: "--pickle-orange" },
+  { name: "Pickle Green", value: "pickle-green", cssVar: "--pickle-green" },
+  { name: "Pickle Blue", value: "pickle-blue", cssVar: "--pickle-blue" },
+  { name: "Pickle Red", value: "pickle-red", cssVar: "--pickle-red" },
+  { name: "Pickle White", value: "pickle-white", cssVar: "--pickle-white" },
 ];
 
 const Footer = () => {
@@ -40,7 +45,13 @@ const Footer = () => {
         </AccentTypography>
         <select id="theme-select" value={theme} onChange={handleChangeTheme}>
           {themes.map((themeOption) => (
-            <option key={themeOption.value} value={themeOption.value}>
+            <option
+              key={themeOption.value}
+              value={themeOption.value}
+              style={{
+                backgroundColor: getCssVariable(themeOption.cssVar),
+              }}
+            >
               {themeOption.name}
             </option>
           ))}
