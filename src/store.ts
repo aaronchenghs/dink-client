@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch as useReduxDispatch } from "react-redux";
+import { thunkMiddleware } from "./middleware/thunkMiddleware";
 import authReducer from "./slices/authSlice";
 import userReducer from "./slices/userSlice";
-import { thunkMiddleware } from "./middleware/thunkMiddleware";
+import commonReducer from "./slices/commonSlice";
 
 const customMiddleware = [thunkMiddleware];
 
@@ -11,6 +12,7 @@ const store = configureStore({
   reducer: {
     user: userReducer,
     auth: authReducer,
+    common: commonReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false }).concat([

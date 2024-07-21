@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { THUNK_signinUser } from "./authSlice";
+import { THUNK_signinUser, THUNK_signoutUser } from "./authSlice";
 
 interface IUserState {
   id: string | null;
@@ -72,6 +72,9 @@ const userSlice = createSlice({
       state.loading = false;
 
       localStorage.setItem("token", token);
+    });
+    builder.addCase(THUNK_signoutUser.fulfilled, (state) => {
+      Object.assign(state, USER_INITIAL_STATE);
     });
   },
 });

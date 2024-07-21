@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { buildAxiosCall } from "../services";
 import axiosInstance from "../middleware/axiosConfig";
+import store from "../store";
 
 interface IAuthState {
   token: string | null;
@@ -69,7 +70,7 @@ export const THUNK_signinUser = createAsyncThunk<
       SigninResponse,
       { email: string; password: string }
     >("POST", "auth/signin", userData);
-    localStorage.setItem("token", data.token); // Store token in local storage
+    localStorage.setItem("token", data.token);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue({
@@ -77,6 +78,16 @@ export const THUNK_signinUser = createAsyncThunk<
         .data.message,
     });
   }
+});
+
+export const THUNK_signoutUser = createAsyncThunk<
+  void,
+  void,
+  { rejectValue: SignupError }
+>("auth/signout", async () => {
+  const userId = store.getState().user.id;
+  if (userId)
+    await buildAxiosCall<void, string>("POST", "auth/signout", userId);
 });
 
 export const THUNK_refreshToken = createAsyncThunk<
@@ -88,7 +99,7 @@ export const THUNK_refreshToken = createAsyncThunk<
     const { data } = await axiosInstance.post<{ token: string }>(
       "auth/refresh-token"
     );
-    localStorage.setItem("token", data.token); // Store new token in local storage
+    localStorage.setItem("token", data.token);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue({
@@ -102,10 +113,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState: AUTH_INITIAL_STATE,
   reducers: {
-    logout(state) {
-      state.token = null;
-      localStorage.removeItem("token");
-    },
     setToken(state, action) {
       state.token = action.payload;
       localStorage.setItem("token", action.payload);
@@ -147,10 +154,23 @@ const authSlice = createSlice({
       .addCase(THUNK_refreshToken.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.message || "An error occurred";
+      })
+      .addCase(THUNK_signoutUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(THUNK_signoutUser.fulfilled, (state) => {
+        localStorage.removeItem("token");
+        state.loading = false;
+        state.token = null;
+      })
+      .addCase(THUNK_signoutUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "An error occurred";
       });
   },
 });
 
-export const { logout, setToken } = authSlice.actions;
+export const { setToken } = authSlice.actions;
 export default authSlice.reducer;
 export type { IAuthState };

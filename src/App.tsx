@@ -8,10 +8,15 @@ import Login from "./components/login/login.component";
 import CourtMap from "./components/courtmap/courtmap.component";
 import GoogleMapsLoader from "./components/courtmap/googlemapsloader";
 import { useEffect } from "react";
-import { dispatch } from "./store";
+import { AppState, dispatch } from "./store";
 import { initializeAuth } from "./services";
+import { UniversalFeedback } from "./middleware/Feedback/feedback";
+import LoadingOverlay from "./components/loadingoverlay/loadingoverlay.component";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const $loading = useSelector((state: AppState) => state.auth.loading);
+
   useEffect(() => {
     initializeAuth(dispatch);
   }, [dispatch]);
@@ -19,6 +24,7 @@ const App = () => {
   return (
     <div className="app-container">
       <Header />
+
       <div className="main-content">
         <GoogleMapsLoader>
           <Routes>
@@ -33,8 +39,13 @@ const App = () => {
             <Route path={ROUTES.NOT_FOUND} element={<>404 Page Not Found</>} />
           </Routes>
         </GoogleMapsLoader>
+
+        <LoadingOverlay isLoading={$loading} />
       </div>
+
       <Footer />
+
+      <UniversalFeedback />
     </div>
   );
 };

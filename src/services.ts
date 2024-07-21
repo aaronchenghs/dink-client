@@ -2,7 +2,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import axiosInstance from "./middleware/axiosConfig";
 import { AppDispatch } from "./store";
-import { setToken, THUNK_refreshToken } from "./slices/authSlice";
+import {
+  setToken,
+  THUNK_refreshToken,
+  THUNK_signoutUser,
+} from "./slices/authSlice";
 import { setUser } from "./slices/userSlice";
 
 export const API_URL = "https://localhost:7015/api/";
@@ -25,6 +29,14 @@ export const initializeAuth = async (dispatch: AppDispatch) => {
         localStorage.removeItem("token");
       }
     }
+  }
+};
+
+export const logoutUser = async (dispatch: AppDispatch) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    dispatch(THUNK_signoutUser());
   }
 };
 

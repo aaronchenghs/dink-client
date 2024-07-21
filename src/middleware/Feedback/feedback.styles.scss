@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+.snackbar {
+  div {
+    background-color: aliceblue;
+
+    border: 1px solid;
+    border-color: var(--primary-color);
+
+    div {
+      border: none;
+    }
+  }
+}

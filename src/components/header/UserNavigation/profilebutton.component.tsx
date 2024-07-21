@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./profileButton.styles.scss";
-import { AppState } from "../../../store";
+import { AppState, dispatch } from "../../../store";
 import DEFAULT_PADDLE_ICON from "../../../assets/default_icons";
 import ContextMenu from "../../../assets/accentcomponents/ContextMenu/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../global-utils";
+import { logoutUser } from "../../../services";
 
 const ProfileButton = () => {
   const navigate = useNavigate();
@@ -36,9 +37,10 @@ const ProfileButton = () => {
     setMenuVisible((prevVisible) => !prevVisible);
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    routeTo(ROUTES.HOME);
+  const logout = async () => {
+    await logoutUser(dispatch).then(() => {
+      routeTo(ROUTES.HOME);
+    });
   };
 
   useEffect(() => {

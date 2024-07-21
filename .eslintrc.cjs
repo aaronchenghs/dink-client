@@ -20,5 +20,6 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": "warn",
     "jsx-a11y/no-autofocus": "warn",
     "jsx-a11y/no-distracting-elements": "warn",
+    "@typescript-eslint/no-unused-vars": ["warn"],
   },
 };

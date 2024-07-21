@@ -4,7 +4,7 @@ import {
   UniversalFeedbackComponentState,
 } from "../middleware/feedbackState.ts";
 
-interface CommonState {
+interface ICommonState {
   settingsOpen: boolean;
   apiBuildVersion: string;
   menuOpen: boolean;
@@ -22,7 +22,7 @@ interface CommonState {
   returnToLibraryManager: boolean;
 }
 
-const INITIAL_STATE: CommonState = {
+const INITIAL_STATE: ICommonState = {
   menuOpen: false,
   taskBarOpen: false,
   accountOpen: false,
@@ -42,8 +42,8 @@ const INITIAL_STATE: CommonState = {
   returnToLibraryManager: false,
 };
 
-const slice = createSlice({
-  name: "commonSlice",
+const commonSlice = createSlice({
+  name: "common",
   initialState: INITIAL_STATE,
   reducers: {
     changeSettingsOpen(state) {
@@ -87,13 +87,13 @@ const slice = createSlice({
 
     addLoadingMessage(
       state,
-      { payload }: PayloadAction<CommonState["loadingMessages"][number]>
+      { payload }: PayloadAction<ICommonState["loadingMessages"][number]>
     ) {
       state.loadingMessages.push(payload);
     },
     removeLoadingMessage(
       state,
-      { payload }: PayloadAction<CommonState["loadingMessages"][number]>
+      { payload }: PayloadAction<ICommonState["loadingMessages"][number]>
     ) {
       state.loadingMessages = state.loadingMessages.filter(
         (message) => message.id !== payload.id
@@ -108,8 +108,8 @@ const slice = createSlice({
   },
 });
 
-export const reducer = slice.reducer;
-
+export default commonSlice.reducer;
+export type { ICommonState as CommonState };
 export const {
   changeMenuOpen,
   changeTaskbarOpen,
@@ -122,4 +122,4 @@ export const {
   addLoadingMessage,
   removeLoadingMessage,
   setReturnToLibraryManager,
-} = slice.actions;
+} = commonSlice.actions;
