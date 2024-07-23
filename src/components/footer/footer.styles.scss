@@ -1,11 +1,12 @@
 @import "../../variables.scss";
+$footer-height: 120px;
 
 .footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 120px;
+  height: $footer-height;
   width: 100%;
   background-color: var(--text-color);
 
@@ -28,7 +29,7 @@
 
       option {
         padding: 0.5rem;
-        color: black;
+        color: rgba(0, 0, 0, 0.5);
         &:hover {
           background-color: white;
           color: white;

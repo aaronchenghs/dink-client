@@ -4,8 +4,6 @@ import { THUNK_signinUser, THUNK_signupUser } from "../../slices/authSlice";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 
-// ...
-
 import { useDispatch } from "react-redux";
 import {
   validateEmail,
@@ -17,7 +15,7 @@ import InputField from "../../assets/accentcomponents/InputField/InputField";
 import { ROUTES } from "../../global-utils";
 import { useNavigate } from "react-router-dom";
 
-const Login: React.FC = () => {
+export default function Login() {
   const navigate = useNavigate();
   const dispatch: ThunkDispatch<unknown, unknown, AnyAction> = useDispatch();
 
@@ -190,6 +188,4 @@ const Login: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

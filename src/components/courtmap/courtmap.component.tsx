@@ -26,7 +26,7 @@ const courts: Court[] = [
   },
 ];
 
-const CourtMap = () => {
+export default function CourtMap() {
   const [selectedCourt, setSelectedCourt] = useState<Court | null>(null);
   const [currentLocation, setCurrentLocation] = useState({
     lat: 37.7749,
@@ -147,6 +147,4 @@ const CourtMap = () => {
       </GoogleMap>
     </div>
   );
-};
-
-export default CourtMap;
+}

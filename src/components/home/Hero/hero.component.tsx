@@ -1,28 +1,13 @@
-import { useSelector } from "react-redux";
-import AccentTypography from "../../../assets/accentcomponents/AccentTypography/AccentTypography";
 import "./hero.styles.scss";
-import { AppState } from "../../../store";
 
-const Hero = () => {
-  const $name = useSelector((state: AppState) => state.user.username);
+interface HeroProps {
+  type: "full" | "half";
+  children: React.ReactNode;
+}
+
+const Hero = ({ type, children }: HeroProps) => {
   return (
-    <div className="hero">
-      <div className="hero-content">
-        <AccentTypography tag="h1" className="hero-title">
-          Welcome to Dinks
-        </AccentTypography>
-
-        <AccentTypography tag="body" className="hero-subtitle">
-          {$name ? (
-            <>
-              Signed in as <i>{$name}</i>
-            </>
-          ) : (
-            <>Join the global pickleball community</>
-          )}
-        </AccentTypography>
-      </div>
-    </div>
+    <div className={type === "half" ? "hero" : "fullhero"}>{children}</div>
   );
 };
 
