@@ -1,8 +1,14 @@
 @import "../../variables.scss";
+@import "../footer/footer.styles.scss";
+@import "../header/header.styles.scss";
+
 .home {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: $header-height;
+
+  min-height: calc(100vh - $footer-height - $header-height);
 }

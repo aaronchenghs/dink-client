@@ -1,11 +1,12 @@
 @import "./variables.scss";
 @import "./components//header/header.styles.scss";
+@import "./components/footer/footer.styles.scss";
 
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - $header-height);
-  padding-top: $header-height;
+  align-items: center;
+
   @media screen and (max-width: var(--mobile-width)) {
     min-height: calc(100vh - 50px);
     height: 50px;
@@ -14,6 +15,8 @@
 .main-content {
   flex: 1;
   display: flex;
+  width: 100%;
   flex-direction: column;
   background-color: var(--background-color);
+  min-height: calc(100vh - $footer-height);
 }

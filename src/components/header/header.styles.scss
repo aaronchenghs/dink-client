@@ -2,21 +2,24 @@
 
 $header-height: 60px;
 $navButtonsPadding: 20px;
+$top-of-page-spacing: 4px;
 
 .header {
   height: $header-height;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  background-color: var(--text-color); // $light-text-color
+  width: 90%;
+  background-color: var(--text-color);
   transition:
     top 0.3s ease-in-out,
     background-color 0.2s ease-in-out;
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  margin-top: $top-of-page-spacing;
 
   @media screen and (max-width: var(--mobile-width)) {
     height: 50px;
