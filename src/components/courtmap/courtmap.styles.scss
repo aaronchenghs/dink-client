@@ -1,8 +1,10 @@
+@import "../header/header.styles.scss";
+
 .court-map {
   display: flex;
   flex-direction: row;
   width: 100%;
-  flex: 1;
+  height: calc(100vh - $header-height);
 }
 
 .sidebar {
@@ -13,7 +15,6 @@
   padding-right: 15px;
   padding-top: 10px;
   overflow-y: auto;
-  transition: transform 0.3s ease-in-out;
   transform: translateX(0);
 
   &.hidden {

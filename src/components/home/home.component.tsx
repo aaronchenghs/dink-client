@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import AccentTypography from "../../assets/accentcomponents/AccentTypography/AccentTypography";
 import { AppState } from "../../store";
-import Hero from "./hero/hero.component";
 import "./home.styles.scss";
+import Hero from "./Hero/hero.component";
 
 export default function Home() {
   const $id = useSelector((state: AppState) => state.user.id);
