@@ -5,7 +5,7 @@
 
   color-scheme: light pickle-green pickle-orange pickle-blue pickle-white;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -45,7 +45,7 @@ div {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--background-color);
   border-radius: 10px;
 }
 
