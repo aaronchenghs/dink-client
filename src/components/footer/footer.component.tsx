@@ -39,6 +39,10 @@ const Footer = () => {
 
   return (
     <div className="footer">
+      <AccentTypography tag={"body"} inverted>
+        Contact: aaronchenghs@gmail.com
+      </AccentTypography>
+
       <div className="theme-selector">
         <AccentTypography htmlFor="theme-select" tag={"body"} inverted>
           Choose Theme:
