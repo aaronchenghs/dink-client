@@ -1,5 +1,4 @@
 // Light mode colors
-$pickle-yellow: #ccff00;
 $light-secondary-color: #1e90ff;
 $dark-secondary-color: #1362b2;
 $light-accent-color: black;
@@ -7,6 +6,7 @@ $light-background-color: #eaeaea;
 $light-text-color: #151515;
 
 // Extended Colors
+$pickle-yellow: #ccff00;
 $pickle-green: #adff2f;
 $pickle-orange: #ffa500;
 $pickle-blue: #1e90ff;
@@ -23,15 +23,15 @@ $primary-font: "Poppins";
 
 // CSS Variables
 :root {
-  --pickle-yellow: #ccff00;
-  --pickle-green: #adff2f;
-  --pickle-orange: #ffa500;
-  --pickle-blue: #1e90ff;
-  --pickle-white: #ffffff;
-  --pickle-red: #ff4500;
+  --pickle-yellow: #{$pickle-yellow};
+  --pickle-green: #{$pickle-green};
+  --pickle-orange: #{$pickle-orange};
+  --pickle-blue: #{$pickle-blue};
+  --pickle-white: #{$pickle-white};
+  --pickle-red: #{$pickle-red};
 
-  --primary-color: var(--pickle-yellow);
-  --primary-color-dark: darken(var(--pickle-yellow), 5%);
+  --primary-color: #{$pickle-yellow};
+  --primary-color-dark: #{darken($pickle-yellow, $dark-percentage)};
   --secondary-color: #1e90ff;
   --accent-color: black;
   --background-color: #eaeaea;

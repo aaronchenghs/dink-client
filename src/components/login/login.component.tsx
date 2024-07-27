@@ -131,7 +131,9 @@ export default function Login() {
             className={`user_forms-login ${isLogin ? "" : "show"}`}
             onSubmit={handleSubmit}
           >
-            <h2 className="forms_title">Login</h2>
+            <AccentTypography className="forms_title" tag={"h2"}>
+              Login
+            </AccentTypography>
             <InputField
               label="Email"
               value={email}
@@ -156,7 +158,9 @@ export default function Login() {
             className={`user_forms-signup ${isLogin ? "show" : ""}`}
             onSubmit={handleSubmit}
           >
-            <h2 className="forms_title">Sign Up</h2>
+            <AccentTypography className="forms_title" tag={"h2"}>
+              Sign Up
+            </AccentTypography>
             <InputField
               label="Email"
               value={email}

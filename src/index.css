@@ -22,6 +22,15 @@ button {
   }
 }
 
+select {
+  cursor: pointer;
+  user-select: none;
+  font-family: "Poppins";
+  &:disabled {
+    cursor: default;
+  }
+}
+
 body {
   margin: 0;
 }
