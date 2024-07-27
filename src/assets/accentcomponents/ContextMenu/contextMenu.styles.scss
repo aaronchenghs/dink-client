@@ -17,7 +17,7 @@
     position: relative;
     background: none;
     border: none;
-    padding: 10px;
+    padding: 0.6rem;
     cursor: pointer;
     text-align: left;
     width: 100%;
@@ -41,7 +41,7 @@
     }
 
     &:hover {
-      padding-left: 20px;
+      padding-left: 15px;
       &::before {
         transform: scaleX(1);
       }
