@@ -32,12 +32,12 @@ $primary-font: "Poppins";
 
   --primary-color: #{$pickle-yellow};
   --primary-color-dark: #{darken($pickle-yellow, $dark-percentage)};
-  --secondary-color: #1e90ff;
-  --accent-color: black;
-  --background-color: #eaeaea;
-  --text-color: #151515;
-  --highlighted-text-color: silver;
-  --error: var(--pickle-red);
+  --secondary-color: #{$light-secondary-color};
+  --accent-color: #{$light-accent-color};
+  --background-color: #{$light-background-color};
+  --text-color: #{$light-text-color};
+  --highlighted-text-color: #{silver};
+  --error: #{$pickle-red};
 }
 
 [data-theme="pickle-green"] {
