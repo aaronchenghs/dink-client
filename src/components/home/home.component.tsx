@@ -5,6 +5,7 @@ import LandingVideo from "../../assets/backgrounds/upclose-evening-background.mp
 import "./home.styles.scss";
 import Hero from "./Hero/hero.component";
 import BackgroundVideo from "../../assets/accentcomponents/Video/backgroundvideo.component";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { AppState } from "../../store";
 import { ROUTES } from "../../global-utils";
 import { useNavigate } from "react-router-dom";
@@ -40,8 +41,13 @@ const Landing = () => {
               </AccentTypography>
             </div>
           </div>
+          <button className="discover-landing-button">
+            <ArrowDownwardIcon />
+          </button>
         </div>
       </Hero>
+
+      <Hero type={"half"}> C1 </Hero>
     </div>
   );
 };

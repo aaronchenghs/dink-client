@@ -7,7 +7,7 @@ interface HeroProps {
 
 const Hero = ({ type, children }: HeroProps) => {
   return (
-    <div className={type === "half" ? "hero" : "fullhero"}>{children}</div>
+    <div className={`hero ${type === "full" && `fullhero`}`}>{children}</div>
   );
 };
 

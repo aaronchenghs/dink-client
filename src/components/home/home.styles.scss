@@ -46,3 +46,14 @@
   z-index: 2;
   line-height: 1rem;
 }
+
+.discover-landing-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  z-index: 100;
+}
