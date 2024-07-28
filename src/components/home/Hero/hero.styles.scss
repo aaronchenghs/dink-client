@@ -9,7 +9,7 @@
   justify-content: center;
   position: relative;
   text-align: center;
-  color: white;
+  color: gray;
 
   &::before {
     content: "";
@@ -40,5 +40,5 @@
 
 .fullhero {
   @extend .hero;
-  height: calc(100vh - $footer-height - $header-height);
+  height: 100vh;
 }

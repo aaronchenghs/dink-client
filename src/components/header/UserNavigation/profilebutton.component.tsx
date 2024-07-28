@@ -27,10 +27,10 @@ const ProfileButton = () => {
     navigate(route);
   };
 
-  const handleAuthClick = (route: ROUTES, isLogin: boolean) => {
+  const handleAuthClick = (isLogin?: boolean) => {
     localStorage.setItem("authMode", isLogin ? "login" : "signup");
     setMenuVisible(false);
-    routeTo(route);
+    routeTo(ROUTES.LOGIN);
   };
 
   const toggleMenu = () => {
@@ -70,11 +70,11 @@ const ProfileButton = () => {
     : [
         {
           label: "Login",
-          action: () => handleAuthClick(ROUTES.LOGIN, false),
+          action: () => handleAuthClick(),
         },
         {
           label: "Sign Up",
-          action: () => handleAuthClick(ROUTES.LOGIN, true),
+          action: () => handleAuthClick(true),
         },
       ];
 
