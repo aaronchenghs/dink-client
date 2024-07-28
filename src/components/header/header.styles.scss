@@ -14,7 +14,7 @@ $top-of-page-spacing: 6px;
   transition:
     top 0.3s ease-in-out,
     background-color 0.2s ease-in-out;
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
