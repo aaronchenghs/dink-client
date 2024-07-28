@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./header.styles.scss";
 import { ROUTES } from "../../global-utils";
 import ProfileButton from "./UserNavigation/profilebutton.component";
+import AccentButton from "../../assets/accentcomponents/AccentButton/accentbutton.component";
 
 interface NavigationLink {
   name: string;
@@ -43,13 +44,13 @@ const Header = () => {
       </button>
       <div className="navButtonsContainer">
         {NAVIGATION.map((link, index) => (
-          <button
+          <AccentButton
             className="navButton"
             key={index}
             onClick={() => navigate(link.route)}
           >
             {link.name}
-          </button>
+          </AccentButton>
         ))}
         <ProfileButton />
       </div>

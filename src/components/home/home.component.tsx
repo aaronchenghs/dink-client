@@ -7,8 +7,9 @@ import Hero from "./Hero/hero.component";
 import BackgroundVideo from "../../assets/accentcomponents/Video/backgroundvideo.component";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { AppState } from "../../store";
-import { ROUTES } from "../../global-utils";
+import { ROUTES, scrollToElement } from "../../global-utils";
 import { useNavigate } from "react-router-dom";
+import AccentButton from "../../assets/accentcomponents/AccentButton/accentbutton.component";
 
 export default function Home() {
   const $id = useSelector((state: AppState) => state.user.id);
@@ -23,6 +24,14 @@ const Landing = () => {
     localStorage.setItem("authMode", isSignUp ? "login" : "signup");
     navigate(ROUTES.LOGIN);
   };
+
+  const handleDiscoverClick = () => {
+    const firstHeroElement = document.getElementById("first-hero-element");
+    if (firstHeroElement) {
+      scrollToElement(firstHeroElement, 420);
+    }
+  };
+
   return (
     <div className="home">
       <Hero type={"full"}>
@@ -41,13 +50,23 @@ const Landing = () => {
               </AccentTypography>
             </div>
           </div>
-          <button className="discover-landing-button">
+          <AccentButton
+            className={"discover-landing-button"}
+            type={"primary"}
+            onClick={handleDiscoverClick}
+          >
             <ArrowDownwardIcon />
-          </button>
+          </AccentButton>
         </div>
       </Hero>
 
-      <Hero type={"half"}> C1 </Hero>
+      <Hero type={"half"} id="first-hero-element">
+        {" "}
+        C1{" "}
+      </Hero>
+      <Hero type={"half"}> C2 </Hero>
+      <Hero type={"half"}> C3 </Hero>
+      <Hero type={"half"}> C4 </Hero>
     </div>
   );
 };

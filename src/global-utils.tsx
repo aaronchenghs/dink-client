@@ -28,3 +28,27 @@ export function darkenColor(color: string, percent: number): string {
       .slice(1)
   );
 }
+
+export const scrollToElement = (element: Element, duration: number) => {
+  const startingY = window.pageYOffset;
+  const elementY = window.pageYOffset + element.getBoundingClientRect().top;
+  const diff = elementY - startingY;
+  let start: number | undefined;
+
+  const easeInOutCubic = (t: number): number => {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  window.requestAnimationFrame(function step(timestamp) {
+    if (!start) start = timestamp;
+    const time = timestamp - start;
+    const percent = Math.min(time / duration, 1);
+    const easedPercent = easeInOutCubic(percent);
+
+    window.scrollTo(0, startingY + diff * easedPercent);
+
+    if (time < duration) {
+      window.requestAnimationFrame(step);
+    }
+  });
+};
