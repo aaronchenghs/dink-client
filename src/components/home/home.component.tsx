@@ -1,15 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useSelector } from "react-redux";
 import AccentTypography from "../../assets/accentcomponents/AccentTypography/AccentTypography";
 
 import LandingVideo from "../../assets/backgrounds/upclose-evening-background.mp4";
 import "./home.styles.scss";
-import Hero from "./Hero/hero.component";
 import BackgroundVideo from "../../assets/accentcomponents/Video/backgroundvideo.component";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { AppState } from "../../store";
 import { ROUTES, scrollToElement } from "../../global-utils";
 import { useNavigate } from "react-router-dom";
 import AccentButton from "../../assets/accentcomponents/AccentButton/accentbutton.component";
+import Hero from "./hero/hero.component";
 
 export default function Home() {
   const $id = useSelector((state: AppState) => state.user.id);
@@ -44,9 +45,24 @@ const Landing = () => {
               </AccentTypography>
               <AccentTypography tag="p" inverted>
                 Scroll to discover,{" "}
-                <a onClick={() => handleAuthClick()}>Log in</a> or{" "}
-                <a onClick={() => handleAuthClick(true)}>Sign up</a> to connect
-                with other players.
+                <a
+                  onClick={() => handleAuthClick()}
+                  onKeyDown={() => handleAuthClick()}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Log in
+                </a>{" "}
+                or{" "}
+                <a
+                  onClick={() => handleAuthClick(true)}
+                  onKeyDown={() => handleAuthClick(true)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Sign up
+                </a>{" "}
+                to connect with other players.
               </AccentTypography>
             </div>
           </div>

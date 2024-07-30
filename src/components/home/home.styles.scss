@@ -56,4 +56,9 @@
   height: 45px;
   border-radius: 50px;
   z-index: 100;
+
+  &:hover {
+    transform: scale(1.07);
+    background-color: var(--primary-color);
+  }
 }
