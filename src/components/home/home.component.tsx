@@ -10,7 +10,7 @@ import { AppState } from "../../store";
 import { ROUTES, scrollToElement } from "../../global-utils";
 import { useNavigate } from "react-router-dom";
 import AccentButton from "../../assets/accentcomponents/AccentButton/accentbutton.component";
-import Hero from "./hero/hero.component";
+import Hero from "./Hero/hero.component";
 
 export default function Home() {
   const $id = useSelector((state: AppState) => state.user.id);

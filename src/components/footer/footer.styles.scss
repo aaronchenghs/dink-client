@@ -10,6 +10,8 @@ $footer-height: 85px;
   width: 100%;
   background-color: var(--text-color);
 
+  border-top: solid 2px var(--primary-color);
+
   .theme-selector {
     position: relative;
 
