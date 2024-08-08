@@ -40,10 +40,10 @@ const Landing = () => {
           <BackgroundVideo src={LandingVideo} className="video" />
           <div className="content">
             <div className="text-blur-wrapper">
-              <AccentTypography tag="h1" inverted>
+              <AccentTypography className="lessMargin" tag="h1" inverted>
                 Discover the Worldwide Pickleball Community
               </AccentTypography>
-              <AccentTypography tag="p" inverted>
+              <AccentTypography className="lessMargin" tag="p" inverted>
                 Scroll to discover,{" "}
                 <a
                   onClick={() => handleAuthClick()}

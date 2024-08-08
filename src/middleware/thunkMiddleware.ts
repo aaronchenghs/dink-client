@@ -46,6 +46,7 @@ export const thunkMiddleware: Middleware =
 
     let thunkMethodVerb = "";
     let thunkSuccessVerb = "";
+
     switch (thunkOperation) {
       case ThunkOperation.GET: {
         thunkMethodVerb = "Loading";

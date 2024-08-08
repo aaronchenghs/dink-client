@@ -89,6 +89,7 @@ const commonSlice = createSlice({
       state,
       { payload }: PayloadAction<ICommonState["loadingMessages"][number]>
     ) {
+      // Utilize this to add loading wheel when necessary
       state.loadingMessages.push(payload);
     },
     removeLoadingMessage(

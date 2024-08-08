@@ -44,7 +44,6 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
-  line-height: 1rem;
 }
 
 .discover-landing-button {
@@ -61,4 +60,8 @@
     transform: scale(1.07);
     background-color: var(--primary-color);
   }
+}
+
+.lessMargin {
+  margin: 0.5rem;
 }

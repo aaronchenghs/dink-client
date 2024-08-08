@@ -10,6 +10,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { AppState, dispatch } from "../../store";
 import { hideUniversalFeedbackComponent } from "../../slices/commonSlice";
+import CloseIcon from "@mui/icons-material/Close";
+
 import "./feedback.styles.scss";
 
 /**
@@ -70,7 +72,7 @@ export const UniversalFeedback = (): React.ReactElement | null => {
               onClick={closeFeedbackComponent}
               size="small"
             >
-              X
+              <CloseIcon />
             </IconButton>
           </>
         }

@@ -1,16 +1,17 @@
 @import "../../variables.scss";
-$footer-height: 85px;
+$top-border-height: 2px;
+$footer-height: calc(83px + $top-border-height);
 
 .footer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: $footer-height;
+  height: calc($footer-height - $top-border-height);
   width: 100%;
   background-color: var(--text-color);
 
-  border-top: solid 2px var(--primary-color);
+  border-top: solid $top-border-height var(--primary-color);
 
   .theme-selector {
     position: relative;

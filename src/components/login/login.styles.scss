@@ -94,7 +94,7 @@
   flex: 1;
   z-index: 1;
 
-  min-height: calc(100vh - $footer-height - $header-height);
+  height: calc(100vh - $footer-height - $header-height);
   padding-top: $header-height;
 
   &::before {
@@ -107,7 +107,7 @@
     background: url("../../assets/backgrounds/sign-in-background.jpg") no-repeat
       center center fixed;
     background-size: cover;
-    filter: blur(8px); /* Add blur effect */
+    filter: blur(8px);
     z-index: -1;
   }
 }
